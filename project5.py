@@ -91,12 +91,39 @@ while True:
                         
          elif choice == "6":
               print("Return Book")
+              Title = input("Enter Book Title:")
+              found = False
+              for book in Books:
+                   if book["Title"] == Title:
+                        Quantity = int(input("Enter Return Quantity:"))
+                        book["Quantity"] = book["Quantity"] + Quantity
+                        found = True
+                        break
+              if found == False:
+                   print("Book not Found")
          elif choice == "7":
               print("Delete Book")
+              Title = input("Enter Book Title:")
+              found = False
+              for book in Books:
+                   if book["Title"] == Title:
+                        Books.remove(book)
+                        found = True
+                        break
+              if found == False:
+                   print("Book not found")
          elif choice == "8":
               print("Save to File")
+              file = open("library.txt" , "w")
+              for book in Books:
+                   file.write(book["Title"]+ "," + book["Author"] + "," + str(book["Quantity"])+ "\n")
+              file.close()    
          elif choice == "9":
               print("Load from File")
+              file = open("library.txt" , "r")
+              data = file.read()
+              print(data)
+              file.close()
          elif choice == "10":
               print("Exit")
               print("Good Bye")
